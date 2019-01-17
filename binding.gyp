@@ -122,6 +122,7 @@
 
       'defines': [
           'BITPRIM_LIB_STATIC',
+          'BITPRIM_DB_NEW_FULL',
       ],
       # # Linux OLD
       # "include_dirs": ["/home/fernando/dev/bitprim/bitprim-node-cint/include"],
@@ -154,7 +155,7 @@
       'conditions': [
         ['OS=="linux"', {
 
-          "include_dirs": ["<!(node -e \"require('nan')\")", "./deps/include", "../deps/include"],
+          "include_dirs": ["<!(node -e \"require('nan')\")", "./include", "./deps/include", "../deps/include"],
           # "include_dirs": ["/home/fernando/dev/bitprim-node-cint/include"],
           
           'libraries': [
