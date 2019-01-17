@@ -155,6 +155,36 @@
       'conditions': [
         ['OS=="linux"', {
 
+
+            "cflags": [
+            "-Wall",
+            "-Wno-implicit-fallthrough",
+            "-Wno-uninitialized",
+            "-Wno-unused-function",
+            "-Wno-unknown-warning-option",
+            "-Wno-maybe-uninitialized",
+            "-Wno-cast-function-type",
+            "-Wno-unused-result",
+            "-Wno-nonnull-compare",
+            "-Wextra",
+            "-O3"
+            ],
+            "cflags_c": [
+            "-std=c99",
+            "-Wno-unused-parameter"
+            ],
+            "cflags_cc+": [
+            "-std=c++11",
+            "-Wno-maybe-uninitialized",
+            "-Wno-cast-function-type",
+            "-Wno-unused-parameter",
+            "-Wno-unknown-warning-option",
+            "-Wno-unused-const-variable",
+            "-Wno-undefined-internal"
+            ],
+
+
+
           "include_dirs": ["<!(node -e \"require('nan')\")", "./include", "./deps/include", "../deps/include"],
           # "include_dirs": ["/home/fernando/dev/bitprim-node-cint/include"],
           
