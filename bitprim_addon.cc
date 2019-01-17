@@ -22,9 +22,9 @@
 #include <bitprim/js-api/chain/point.h>
 #include <bitprim/js-api/chain/history_compact_list.h>
 #include <bitprim/js-api/chain/history_compact.h>
-#include <bitprim/js-api/chain/payment_address.h>
 #include <bitprim/js-api/chain/stealth_compact.h>
 #include <bitprim/js-api/chain/stealth_compact_list.h>
+#include <bitprim/js-api/wallet/payment_address.h>
 #include <bitprim/js-api/wallet/word_list.h>
 
 namespace bitprim_ns {

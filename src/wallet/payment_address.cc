@@ -3,9 +3,9 @@
 
 #include <node.h>
 
-#include <bitprim/nodecint/chain/payment_address.h>
+#include <bitprim/nodecint/wallet/payment_address.h>
 
-#include <bitprim/js-api/chain/payment_address.h>
+#include <bitprim/js-api/wallet/payment_address.h>
 
 namespace bitprim_ns {
 
