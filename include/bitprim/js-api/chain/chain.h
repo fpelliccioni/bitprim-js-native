@@ -19,7 +19,7 @@ void bitprim_chain_fetch_transaction(v8::FunctionCallbackInfo<v8::Value> const& 
 void bitprim_chain_fetch_transaction_position(v8::FunctionCallbackInfo<v8::Value> const& args);
 void bitprim_chain_fetch_spend(v8::FunctionCallbackInfo<v8::Value> const& args);
 void bitprim_chain_fetch_history(v8::FunctionCallbackInfo<v8::Value> const& args);
-void bitprim_chain_fetch_stealth(v8::FunctionCallbackInfo<v8::Value> const& args);
+// void bitprim_chain_fetch_stealth(v8::FunctionCallbackInfo<v8::Value> const& args);
 void bitprim_chain_organize_block(v8::FunctionCallbackInfo<v8::Value> const& args);
 void bitprim_chain_organize_transaction(v8::FunctionCallbackInfo<v8::Value> const& args);
 
