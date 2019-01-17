@@ -24,9 +24,9 @@
                    "src/chain/block_list.cc",
                    "src/chain/history_compact_list.cc",
                    "src/chain/history_compact.cc",
-                   "src/chain/payment_address.cc",
                    "src/chain/stealth_compact.cc",
                    "src/chain/stealth_compact_list.cc",
+                   "src/wallet/payment_address.cc",
                    "src/wallet/word_list.cc",
                 ],
       
