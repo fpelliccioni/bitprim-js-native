@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include <node.h>
+#include <nan.h>
 
 #include <bitprim/nodecint/wallet/payment_address.h>
 
@@ -41,7 +42,7 @@ void bitprim_wallet_payment_address_construct_from_string(v8::FunctionCallbackIn
         return;
     }
 
-    v8::String::Utf8Value str(args[0]->ToString());
+    v8::String::Utf8Value str(isolate, args[0]->ToString(Nan::GetCurrentContext()).FromMaybe(v8::Local<v8::String>()));
 
     payment_address_t res = wallet_payment_address_construct_from_string(*str);
     args.GetReturnValue().Set(External::New(isolate, res));

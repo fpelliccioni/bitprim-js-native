@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include <node.h>
+#include <nan.h>
 
 #include <bitprim/nodecint/chain/stealth_compact.h>
 

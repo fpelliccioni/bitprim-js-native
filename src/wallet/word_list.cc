@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include <node.h>
+#include <nan.h>
 
 #include <bitprim/nodecint/wallet/word_list.h>
 
@@ -80,7 +81,7 @@ void bitprim_wallet_word_list_push_back(v8::FunctionCallbackInfo<v8::Value> cons
     void* vptr = v8::External::Cast(*args[0])->Value();
     word_list_t word_list = (word_list_t)vptr;
 
-    v8::String::Utf8Value word(args[0]->ToString());
+    v8::String::Utf8Value word(isolate, args[0]->ToString(Nan::GetCurrentContext()).FromMaybe(v8::Local<v8::String>()));
 
     wallet_word_list_add_word(word_list, *word);
 }

@@ -1,7 +1,6 @@
 // #include <node.h>
-// #include <libuv.h>
-
 #include <nan.h>
+// #include <libuv.h>
 
 #include <bitprim/nodecint/chain/chain.h>
 #include <bitprim/nodecint/executor_c.h>
@@ -26,6 +25,7 @@ using v8::Exception;
 using v8::Number;
 using v8::Persistent;
 using v8::Function;
+// using v8::Nan;
 
 // ---------------------------------------------------------------------------------------------------------------------------------------
 // ---------------------------------------------------------------------------------------------------------------------------------------
@@ -266,7 +266,7 @@ void bitprim_chain_fetch_block_header_by_height(FunctionCallbackInfo<Value> cons
     chain_t chain = (chain_t)vptr;
 
     
-    uint64_t height = args[1]->IntegerValue();
+    uint64_t height = args[1]->IntegerValue(Nan::GetCurrentContext()).FromJust();
 
     Persistent<Function>* callback = new Persistent<Function>;
     callback->Reset(isolate, args[2].As<Function>());
@@ -388,7 +388,7 @@ void bitprim_chain_fetch_block_by_height(FunctionCallbackInfo<Value> const& args
     chain_t chain = (chain_t)vptr;
 
     
-    uint64_t height = args[1]->IntegerValue();
+    uint64_t height = args[1]->IntegerValue(Nan::GetCurrentContext()).FromJust();
 
     Persistent<Function>* callback = new Persistent<Function>;
     callback->Reset(isolate, args[2].As<Function>());
@@ -509,7 +509,7 @@ void bitprim_chain_fetch_merkle_block_by_height(FunctionCallbackInfo<Value> cons
     chain_t chain = (chain_t)vptr;
 
     
-    uint64_t height = args[1]->IntegerValue();
+    uint64_t height = args[1]->IntegerValue(Nan::GetCurrentContext()).FromJust();
 
     Persistent<Function>* callback = new Persistent<Function>;
     callback->Reset(isolate, args[2].As<Function>());
@@ -633,7 +633,7 @@ void bitprim_chain_fetch_compact_block_by_height(FunctionCallbackInfo<Value> con
     chain_t chain = (chain_t)vptr;
 
     
-    uint64_t height = args[1]->IntegerValue();
+    uint64_t height = args[1]->IntegerValue(Nan::GetCurrentContext()).FromJust();
 
     Persistent<Function>* callback = new Persistent<Function>;
     callback->Reset(isolate, args[2].As<Function>());
@@ -774,7 +774,7 @@ void bitprim_chain_fetch_transaction(FunctionCallbackInfo<Value> const& args) {
     chain_t chain = (chain_t)vptr;
 
     hash_t hash = to_native_hash(arr);
-    bool require_confirmed = args[2]->BooleanValue();
+    bool require_confirmed = args[2]->BooleanValue(Nan::GetCurrentContext()).FromJust();
     
     Persistent<Function>* callback = new Persistent<Function>;
     callback->Reset(isolate, args[3].As<Function>());
@@ -850,7 +850,7 @@ void bitprim_chain_fetch_transaction_position(FunctionCallbackInfo<Value> const&
     chain_t chain = (chain_t)vptr;
 
     hash_t hash = to_native_hash(arr);
-    bool require_confirmed = args[2]->BooleanValue();
+    bool require_confirmed = args[2]->BooleanValue(Nan::GetCurrentContext()).FromJust();
     
     Persistent<Function>* callback = new Persistent<Function>;
     callback->Reset(isolate, args[3].As<Function>());
@@ -991,8 +991,8 @@ void bitprim_chain_fetch_history(FunctionCallbackInfo<Value> const& args) {
     void* address_vptr = v8::External::Cast(*args[1])->Value();
     payment_address_t address = (payment_address_t)address_vptr;
     
-    uint64_t limit = args[2]->IntegerValue();
-    uint64_t from_height = args[3]->IntegerValue();
+    uint64_t limit = args[2]->IntegerValue(Nan::GetCurrentContext()).FromJust();
+    uint64_t from_height = args[3]->IntegerValue(Nan::GetCurrentContext()).FromJust();
 
     Persistent<Function>* callback = new Persistent<Function>;
     callback->Reset(isolate, args[4].As<Function>());
@@ -1064,7 +1064,7 @@ void bitprim_chain_fetch_history(FunctionCallbackInfo<Value> const& args) {
 //     void* filter_vptr = v8::External::Cast(*args[1])->Value();
 //     binary_t filter = (binary_t)filter_vptr;
     
-//     uint64_t from_height = args[2]->IntegerValue();
+//     uint64_t from_height = args[2]->IntegerValue(Nan::GetCurrentContext()).FromJust();
 
 //     Persistent<Function>* callback = new Persistent<Function>;
 //     callback->Reset(isolate, args[3].As<Function>());
@@ -1335,7 +1335,7 @@ bool chain_subscribe_blockchain_handler(Persistent<Function>* callback, error_co
                                 
     Local<Value> res = Local<Function>::New(isolate, *callback)->Call(isolate->GetCurrentContext()->Global(), argc, argv);
 
-    return res->BooleanValue(); 
+    return res->BooleanValue(Nan::GetCurrentContext()).FromJust(); 
 }
 
 using subs_blk_data_t = std::tuple<Persistent<Function>*, error_code_t, uint64_t, block_list_t, block_list_t>;
@@ -1578,7 +1578,7 @@ void bitprim_chain_subscribe_blockchain(FunctionCallbackInfo<Value> const& args)
 //     // printf("bitprim_chain_validate_tx - 6\n");
 
 
-//     v8::String::Utf8Value tx_hex(args[1]->ToString());
+//     v8::String::Utf8Value tx_hex(args[1]->ToString(Nan::GetCurrentContext()).FromMaybe(v8::Local<v8::String>()));
 
 //     // printf("bitprim_chain_validate_tx - 7\n");
 

@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include <node.h>
+#include <nan.h>
 
 #include <bitprim/nodecint/chain/block_list.h>
 
@@ -27,6 +28,7 @@ using v8::Persistent;
 using v8::Function;
 using v8::Uint8Array;
 using v8::ArrayBuffer;
+// using v8::Nan;
 
 
 void bitprim_chain_block_list_construct_default(v8::FunctionCallbackInfo<v8::Value> const& args) {
@@ -128,7 +130,8 @@ void bitprim_chain_block_list_nth(v8::FunctionCallbackInfo<v8::Value> const& arg
     void* vptr = v8::External::Cast(*args[0])->Value();
     block_list_t block_list = (block_list_t)vptr;
 
-    uint64_t n = args[1]->IntegerValue();
+    // uint64_t n = args[1]->IntegerValue();
+    uint64_t n = args[1]->IntegerValue(Nan::GetCurrentContext()).FromJust();
 
     block_t res = chain_block_list_nth(block_list, n);
     args.GetReturnValue().Set(External::New(isolate, res));

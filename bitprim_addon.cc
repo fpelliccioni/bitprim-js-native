@@ -73,20 +73,20 @@ void bitprim_executor_construct(FunctionCallbackInfo<Value> const& args) {
         return;
     }
 
-    v8::String::Utf8Value path(args[0]->ToString());
+    v8::String::Utf8Value path(isolate, args[0]->ToString(Nan::GetCurrentContext()).FromMaybe(v8::Local<v8::String>()));
 
 
     int32_t sout_fd = -1;
     int32_t serr_fd = -1;
 
     if (! args[1]->IsNull()) {
-        auto sout_obj = args[1]->ToObject();
-        sout_fd = sout_obj->Get(String::NewFromUtf8(isolate, "fd"))->Int32Value();
+        auto sout_obj = args[1]->ToObject(Nan::GetCurrentContext()).FromMaybe(v8::Local<v8::Object>());
+        sout_fd = sout_obj->Get(String::NewFromUtf8(isolate, "fd"))->Int32Value(Nan::GetCurrentContext()).FromJust();
     }
 
     if (! args[2]->IsNull()) {
-        auto serr_obj = args[2]->ToObject();
-        serr_fd = serr_obj->Get(String::NewFromUtf8(isolate, "fd"))->Int32Value();
+        auto serr_obj = args[2]->ToObject(Nan::GetCurrentContext()).FromMaybe(v8::Local<v8::Object>());
+        serr_fd = serr_obj->Get(String::NewFromUtf8(isolate, "fd"))->Int32Value(Nan::GetCurrentContext()).FromJust();
     }
 
 //    printf("path:    %s\n", *path);

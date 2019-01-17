@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include <node.h>
+#include <nan.h>
 
 #include <bitprim/nodecint/chain/output.h>
 
@@ -88,7 +89,7 @@ void bitprim_chain_output_serialized_size(v8::FunctionCallbackInfo<v8::Value> co
     void* vptr = v8::External::Cast(*args[0])->Value();
     output_t output = (output_t)vptr;
 
-    bool wire = args[1]->BooleanValue();
+    bool wire = args[1]->BooleanValue(Nan::GetCurrentContext()).FromJust();
     uint64_t res = chain_output_serialized_size(output, wire ? 1 : 0);
     args.GetReturnValue().Set(Number::New(isolate, res));
 }
@@ -135,7 +136,7 @@ void bitprim_chain_output_signature_operations(v8::FunctionCallbackInfo<v8::Valu
     void* vptr = v8::External::Cast(*args[0])->Value();
     output_t output = (output_t)vptr;
 
-    // bool bip16_active = args[1]->BooleanValue();
+    // bool bip16_active = args[1]->BooleanValue(Nan::GetCurrentContext()).FromJust();
 
     // uint64_t res = chain_output_signature_operations(output, bip16_active ? 1 : 0);
     uint64_t res = chain_output_signature_operations(output);

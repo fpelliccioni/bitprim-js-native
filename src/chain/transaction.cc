@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include <node.h>
+#include <nan.h>
 
 #include <bitprim/nodecint/chain/transaction.h>
 
@@ -26,6 +27,7 @@ using v8::Persistent;
 using v8::Function;
 using v8::Uint8Array;
 using v8::ArrayBuffer;
+// using v8::Nan;
 
 
 void bitprim_chain_transaction_destruct(v8::FunctionCallbackInfo<v8::Value> const& args) {
@@ -129,7 +131,7 @@ void bitprim_chain_transaction_hash_sighash_type(v8::FunctionCallbackInfo<v8::Va
     void* vptr = v8::External::Cast(*args[0])->Value();
     transaction_t tx = (transaction_t)vptr;
 
-    uint32_t sighash_type = args[1]->IntegerValue();
+    uint32_t sighash_type = args[1]->IntegerValue(Nan::GetCurrentContext()).FromJust();
     hash_t res = chain_transaction_hash_sighash_type(tx, sighash_type);
     Local<ArrayBuffer> tmp = ArrayBuffer::New(isolate, 32);
     memcpy(tmp->GetContents().Data(), res.hash, 32);
@@ -177,7 +179,7 @@ void bitprim_chain_transaction_serialized_size(v8::FunctionCallbackInfo<v8::Valu
     void* vptr = v8::External::Cast(*args[0])->Value();
     transaction_t tx = (transaction_t)vptr;
 
-    bool wire = args[1]->BooleanValue();
+    bool wire = args[1]->BooleanValue(Nan::GetCurrentContext()).FromJust();
     uint64_t res = chain_transaction_serialized_size(tx, wire ? 1 : 0);
     args.GetReturnValue().Set(Number::New(isolate, res));
 }
@@ -243,7 +245,7 @@ void bitprim_chain_transaction_signature_operations_bip16_active(v8::FunctionCal
     void* vptr = v8::External::Cast(*args[0])->Value();
     transaction_t tx = (transaction_t)vptr;
 
-    bool bip16_active = args[1]->BooleanValue();
+    bool bip16_active = args[1]->BooleanValue(Nan::GetCurrentContext()).FromJust();
 
     uint64_t res = chain_transaction_signature_operations_bip16_active(tx, bip16_active ? 1 : 0);
     args.GetReturnValue().Set(Number::New(isolate, res));
@@ -370,7 +372,7 @@ void bitprim_chain_transaction_is_mature(v8::FunctionCallbackInfo<v8::Value> con
     void* vptr = v8::External::Cast(*args[0])->Value();
     transaction_t tx = (transaction_t)vptr;
 
-    uint64_t target_height = args[1]->IntegerValue();
+    uint64_t target_height = args[1]->IntegerValue(Nan::GetCurrentContext()).FromJust();
 
     int res = chain_transaction_is_mature(tx, target_height);
     args.GetReturnValue().Set(Boolean::New(isolate, res != 0));
@@ -417,7 +419,7 @@ void bitprim_chain_transaction_is_double_spend(v8::FunctionCallbackInfo<v8::Valu
     void* vptr = v8::External::Cast(*args[0])->Value();
     transaction_t tx = (transaction_t)vptr;
 
-    bool include_unconfirmed = args[1]->BooleanValue();
+    bool include_unconfirmed = args[1]->BooleanValue(Nan::GetCurrentContext()).FromJust();
 
     int res = chain_transaction_is_double_spend(tx, include_unconfirmed ? 1 : 0);
     args.GetReturnValue().Set(Boolean::New(isolate, res != 0));
@@ -459,8 +461,8 @@ void bitprim_chain_transaction_is_final(v8::FunctionCallbackInfo<v8::Value> cons
     void* vptr = v8::External::Cast(*args[0])->Value();
     transaction_t tx = (transaction_t)vptr;
 
-    uint64_t block_height = args[1]->IntegerValue();
-    uint32_t block_time = args[2]->IntegerValue();
+    uint64_t block_height = args[1]->IntegerValue(Nan::GetCurrentContext()).FromJust();
+    uint32_t block_time = args[2]->IntegerValue(Nan::GetCurrentContext()).FromJust();
 
     int res = chain_transaction_is_final(tx, block_height, block_time);
     args.GetReturnValue().Set(Boolean::New(isolate, res != 0));

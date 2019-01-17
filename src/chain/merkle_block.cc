@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include <node.h>
+#include <nan.h>
 
 #include <bitprim/nodecint/chain/merkle_block.h>
 
@@ -26,6 +27,7 @@ using v8::Persistent;
 using v8::Function;
 using v8::Uint8Array;
 using v8::ArrayBuffer;
+// using v8::Nan;
 
 void bitprim_chain_merkle_block_destruct(v8::FunctionCallbackInfo<v8::Value> const& args) {
     Isolate* isolate = args.GetIsolate();
@@ -90,7 +92,7 @@ void bitprim_chain_merkle_block_serialized_size(v8::FunctionCallbackInfo<v8::Val
     void* vptr = v8::External::Cast(*args[0])->Value();
     merkle_block_t merkle_block = (merkle_block_t)vptr;
 
-    uint32_t version = args[1]->IntegerValue();
+    uint32_t version = args[1]->IntegerValue(Nan::GetCurrentContext()).FromJust();
 
     uint64_t res = chain_merkle_block_serialized_size(merkle_block, version);
     args.GetReturnValue().Set(Number::New(isolate, res));

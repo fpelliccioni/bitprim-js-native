@@ -2,6 +2,7 @@
 #define BITPRIM_JS_CHAIN_INPUT_LIST_H_
 
 #include <node.h>
+#include <nan.h>
 
 namespace bitprim_ns {
 

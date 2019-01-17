@@ -1,4 +1,5 @@
 #include <node.h>
+#include <nan.h>
 
 #include <bitprim/nodecint/primitives.h>
 

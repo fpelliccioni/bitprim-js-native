@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include <node.h>
+#include <nan.h>
 
 #include <bitprim/nodecint/chain/script.h>
 
@@ -27,6 +28,7 @@ using v8::Persistent;
 using v8::Function;
 using v8::Uint8Array;
 using v8::ArrayBuffer;
+// using v8::Nan;
 
 
 void bitprim_chain_script_destruct(v8::FunctionCallbackInfo<v8::Value> const& args) {
@@ -129,7 +131,7 @@ void bitprim_chain_script_serialized_size(v8::FunctionCallbackInfo<v8::Value> co
     void* vptr = v8::External::Cast(*args[0])->Value();
     script_t script = (script_t)vptr;
 
-    bool prefix = args[1]->BooleanValue();
+    bool prefix = args[1]->BooleanValue(Nan::GetCurrentContext()).FromJust();
 
     uint64_t res = chain_script_serialized_size(script, prefix);
     args.GetReturnValue().Set(Number::New(isolate, res));
@@ -156,7 +158,7 @@ void bitprim_chain_script_to_string(v8::FunctionCallbackInfo<v8::Value> const& a
     void* vptr = v8::External::Cast(*args[0])->Value();
     script_t script = (script_t)vptr;
 
-    uint32_t active_forks = args[1]->IntegerValue();
+    uint32_t active_forks = args[1]->IntegerValue(Nan::GetCurrentContext()).FromJust();
 
     char const* res = chain_script_to_string(script, active_forks);
     args.GetReturnValue().Set(String::NewFromUtf8(isolate, res)); // NewFromOneByte 
@@ -184,7 +186,7 @@ void bitprim_chain_script_sigops(v8::FunctionCallbackInfo<v8::Value> const& args
     void* vptr = v8::External::Cast(*args[0])->Value();
     script_t script = (script_t)vptr;
 
-    bool embedded = args[1]->BooleanValue();
+    bool embedded = args[1]->BooleanValue(Nan::GetCurrentContext()).FromJust();
 
     uint64_t res = chain_script_sigops(script, embedded);
     args.GetReturnValue().Set(Number::New(isolate, res));

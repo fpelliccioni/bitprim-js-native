@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include <node.h>
+#include <nan.h>
 
 #include <bitprim/nodecint/chain/output_point.h>
 
@@ -27,6 +28,7 @@ using v8::Persistent;
 using v8::Function;
 using v8::Uint8Array;
 using v8::ArrayBuffer;
+// using v8::Nan;
 
 
 void bitprim_chain_output_point_construct(v8::FunctionCallbackInfo<v8::Value> const& args) {
@@ -67,7 +69,7 @@ void bitprim_chain_output_point_construct_from_hash_index(v8::FunctionCallbackIn
     }    
 
     hash_t hash = to_native_hash(arr);
-    uint32_t index = args[1]->IntegerValue();
+    uint32_t index = args[1]->IntegerValue(Nan::GetCurrentContext()).FromJust();
 
     output_point_t res = chain_output_point_construct_from_hash_index(hash, index);
     args.GetReturnValue().Set(External::New(isolate, res));

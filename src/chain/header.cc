@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include <node.h>
+#include <nan.h>
 
 #include <bitprim/nodecint/chain/header.h>
 
@@ -25,6 +26,7 @@ using v8::Persistent;
 using v8::Function;
 using v8::Uint8Array;
 using v8::ArrayBuffer;
+// using v8::Nan;
 
 void bitprim_chain_header_destruct(v8::FunctionCallbackInfo<v8::Value> const& args) {
     Isolate* isolate = args.GetIsolate();
@@ -89,7 +91,7 @@ void bitprim_chain_header_set_version(v8::FunctionCallbackInfo<v8::Value> const&
     void* vptr = v8::External::Cast(*args[0])->Value();
     header_t header = (header_t)vptr;
 
-    uint32_t version = args[1]->IntegerValue();
+    uint32_t version = args[1]->IntegerValue(Nan::GetCurrentContext()).FromJust();
 
     chain_header_set_version(header, version);
 }

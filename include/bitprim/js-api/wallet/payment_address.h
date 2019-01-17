@@ -2,6 +2,7 @@
 #define BITPRIM_JS_WALLET_PAYMENT_ADDRESS_H_
 
 #include <node.h>
+#include <nan.h>
 
 namespace bitprim_ns {
 

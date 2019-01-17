@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include <node.h>
+#include <nan.h>
 
 #include <bitprim/nodecint/chain/stealth_compact_list.h>
 
@@ -26,6 +27,7 @@ using v8::Persistent;
 using v8::Function;
 using v8::Uint8Array;
 using v8::ArrayBuffer;
+// using v8::Nan;
 
 void bitprim_chain_stealth_compact_list_destruct(v8::FunctionCallbackInfo<v8::Value> const& args) {
     Isolate* isolate = args.GetIsolate();
@@ -87,7 +89,7 @@ void bitprim_chain_stealth_compact_list_nth(v8::FunctionCallbackInfo<v8::Value> 
     void* vptr = v8::External::Cast(*args[0])->Value();
     stealth_compact_list_t stealth_compact_list = (stealth_compact_list_t)vptr;
 
-    uint64_t n = args[1]->IntegerValue();
+    uint64_t n = args[1]->IntegerValue(Nan::GetCurrentContext()).FromJust();
 
     stealth_compact_t res = chain_stealth_compact_list_nth(stealth_compact_list, n);
     args.GetReturnValue().Set(External::New(isolate, res));
