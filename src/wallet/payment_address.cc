@@ -28,7 +28,7 @@ using v8::Uint8Array;
 using v8::ArrayBuffer;
 
 
-void bitprim_chain_payment_address_construct_from_string(v8::FunctionCallbackInfo<v8::Value> const& args) {
+void bitprim_wallet_payment_address_construct_from_string(v8::FunctionCallbackInfo<v8::Value> const& args) {
     Isolate* isolate = args.GetIsolate();
     
     if (args.Length() != 1) {
@@ -43,11 +43,11 @@ void bitprim_chain_payment_address_construct_from_string(v8::FunctionCallbackInf
 
     v8::String::Utf8Value str(args[0]->ToString());
 
-    payment_address_t res = chain_payment_address_construct_from_string(*str);
+    payment_address_t res = wallet_payment_address_construct_from_string(*str);
     args.GetReturnValue().Set(External::New(isolate, res));
 }
 
-void bitprim_chain_payment_address_destruct(v8::FunctionCallbackInfo<v8::Value> const& args) {
+void bitprim_wallet_payment_address_destruct(v8::FunctionCallbackInfo<v8::Value> const& args) {
     Isolate* isolate = args.GetIsolate();
 
     if (args.Length() != 1) {
@@ -63,10 +63,10 @@ void bitprim_chain_payment_address_destruct(v8::FunctionCallbackInfo<v8::Value> 
     void* vptr = v8::External::Cast(*args[0])->Value();
     payment_address_t payment_address = (payment_address_t)vptr;
 
-    chain_payment_address_destruct(payment_address);
+    wallet_payment_address_destruct(payment_address);
 }
 
-void bitprim_chain_payment_address_encoded(v8::FunctionCallbackInfo<v8::Value> const& args) {
+void bitprim_wallet_payment_address_encoded(v8::FunctionCallbackInfo<v8::Value> const& args) {
     Isolate* isolate = args.GetIsolate();
 
     if (args.Length() != 1) {
@@ -82,11 +82,11 @@ void bitprim_chain_payment_address_encoded(v8::FunctionCallbackInfo<v8::Value> c
     void* vptr = v8::External::Cast(*args[0])->Value();
     payment_address_t payment_address = (payment_address_t)vptr;
 
-    char const* res = chain_payment_address_encoded(payment_address);
+    char const* res = wallet_payment_address_encoded(payment_address);
     args.GetReturnValue().Set(String::NewFromUtf8(isolate, res));
 }
 
-void bitprim_chain_payment_address_version(v8::FunctionCallbackInfo<v8::Value> const& args) {
+void bitprim_wallet_payment_address_version(v8::FunctionCallbackInfo<v8::Value> const& args) {
     Isolate* isolate = args.GetIsolate();
 
     if (args.Length() != 1) {
@@ -102,7 +102,7 @@ void bitprim_chain_payment_address_version(v8::FunctionCallbackInfo<v8::Value> c
     void* vptr = v8::External::Cast(*args[0])->Value();
     payment_address_t payment_address = (payment_address_t)vptr;
 
-    uint8_t res = chain_payment_address_version(payment_address);
+    uint8_t res = wallet_payment_address_version(payment_address);
     args.GetReturnValue().Set(Number::New(isolate, res));
 }
 
