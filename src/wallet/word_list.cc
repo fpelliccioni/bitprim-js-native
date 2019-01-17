@@ -36,7 +36,7 @@ void bitprim_wallet_word_list_construct(v8::FunctionCallbackInfo<v8::Value> cons
         return;
     }
 
-    word_list_t res = word_list_construct();
+    word_list_t res = wallet_word_list_construct();
     args.GetReturnValue().Set(External::New(isolate, res));
 }
 
@@ -56,7 +56,7 @@ void bitprim_wallet_word_list_destruct(v8::FunctionCallbackInfo<v8::Value> const
     void* vptr = v8::External::Cast(*args[0])->Value();
     word_list_t word_list = (word_list_t)vptr;
 
-    word_list_destruct(word_list);
+    wallet_word_list_destruct(word_list);
 }
 
 void bitprim_wallet_word_list_push_back(v8::FunctionCallbackInfo<v8::Value> const& args) {
@@ -82,7 +82,7 @@ void bitprim_wallet_word_list_push_back(v8::FunctionCallbackInfo<v8::Value> cons
 
     v8::String::Utf8Value word(args[0]->ToString());
 
-    word_list_add_word(word_list, *word);
+    wallet_word_list_add_word(word_list, *word);
 }
 
 }  // namespace bitprim_ns
