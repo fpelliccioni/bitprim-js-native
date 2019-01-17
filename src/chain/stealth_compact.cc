@@ -44,7 +44,7 @@ void bitprim_chain_stealth_compact_get_ephemeral_public_key_hash(v8::FunctionCal
     void* vptr = v8::External::Cast(*args[0])->Value();
     stealth_compact_t stealth_compact = (stealth_compact_t)vptr;
 
-    hash_t res = stealth_compact_get_ephemeral_public_key_hash(stealth_compact);
+    hash_t res = chain_stealth_compact_get_ephemeral_public_key_hash(stealth_compact);
     Local<ArrayBuffer> tmp = ArrayBuffer::New(isolate, 32);
     memcpy(tmp->GetContents().Data(), res.hash, 32);
     Local<Uint8Array> hash = Uint8Array::New(tmp, 0, 32);
@@ -67,7 +67,7 @@ void bitprim_chain_stealth_compact_get_transaction_hash(v8::FunctionCallbackInfo
     void* vptr = v8::External::Cast(*args[0])->Value();
     stealth_compact_t stealth_compact = (stealth_compact_t)vptr;
 
-    hash_t res = stealth_compact_get_transaction_hash(stealth_compact);
+    hash_t res = chain_stealth_compact_get_transaction_hash(stealth_compact);
     Local<ArrayBuffer> tmp = ArrayBuffer::New(isolate, 32);
     memcpy(tmp->GetContents().Data(), res.hash, 32);
     Local<Uint8Array> hash = Uint8Array::New(tmp, 0, 32);
@@ -90,7 +90,7 @@ void bitprim_chain_stealth_compact_get_public_key_hash(v8::FunctionCallbackInfo<
     void* vptr = v8::External::Cast(*args[0])->Value();
     stealth_compact_t stealth_compact = (stealth_compact_t)vptr;
 
-    short_hash_t res = stealth_compact_get_public_key_hash(stealth_compact);
+    short_hash_t res = chain_stealth_compact_get_public_key_hash(stealth_compact);
     Local<ArrayBuffer> tmp = ArrayBuffer::New(isolate, 20); //TODO: warning, hardcoded hash size!
     memcpy(tmp->GetContents().Data(), res.hash, 20);        //TODO: warning, hardcoded hash size!
     Local<Uint8Array> hash = Uint8Array::New(tmp, 0, 20);   //TODO: warning, hardcoded hash size!
