@@ -5,7 +5,7 @@
 
 #include <bitprim/nodecint/chain/block.h>
 
-#include "block.h"
+#include <bitprim/js-api/chain/block.h>
 
 namespace bitprim_ns {
 

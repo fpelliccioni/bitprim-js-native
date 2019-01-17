@@ -5,7 +5,7 @@
 
 #include <bitprim/nodecint/chain/history_compact_list.h>
 
-#include "history_compact_list.h"
+#include <bitprim/js-api/chain/history_compact_list.h>
 
 namespace bitprim_ns {
 

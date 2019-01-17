@@ -5,7 +5,7 @@
 
 #include <bitprim/nodecint/wallet/word_list.h>
 
-#include "word_list.h"
+#include <bitprim/js-api/chain/word_list.h>
 
 namespace bitprim_ns {
 

@@ -5,7 +5,7 @@
 
 #include <bitprim/nodecint/chain/transaction.h>
 
-#include "transaction.h"
+#include <bitprim/js-api/chain/transaction.h>
 
 namespace bitprim_ns {
 

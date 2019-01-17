@@ -4,7 +4,7 @@
 
 #include <inttypes.h>   //TODO: Remove, it is for the printf (printing pointer addresses)
 
-#include "tools.h"
+#include <bitprim/js-api/chain/tools.h>
 
 namespace bitprim_ns {
 

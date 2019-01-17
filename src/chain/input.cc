@@ -5,7 +5,7 @@
 
 #include <bitprim/nodecint/chain/input.h>
 
-#include "input.h"
+#include <bitprim/js-api/chain/input.h>
 
 namespace bitprim_ns {
 

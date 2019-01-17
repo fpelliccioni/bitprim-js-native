@@ -5,7 +5,7 @@
 
 #include <bitprim/nodecint/chain/output_list.h>
 
-#include "output_list.h"
+#include <bitprim/js-api/chain/output_list.h>
 
 namespace bitprim_ns {
 

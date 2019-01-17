@@ -5,7 +5,7 @@
 
 #include <bitprim/nodecint/chain/merkle_block.h>
 
-#include "merkle_block.h"
+#include <bitprim/js-api/chain/merkle_block.h>
 
 namespace bitprim_ns {
 

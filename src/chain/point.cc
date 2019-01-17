@@ -5,8 +5,8 @@
 
 #include <bitprim/nodecint/chain/point.h>
 
-#include "point.h"
-#include "tools.h"
+#include <bitprim/js-api/chain/point.h>
+#include <bitprim/js-api/chain/tools.h>
 
 namespace bitprim_ns {
 

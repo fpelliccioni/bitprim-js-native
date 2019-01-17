@@ -5,8 +5,8 @@
 
 #include <bitprim/nodecint/chain/script.h>
 
-#include "script.h"
-#include "tools.h"
+#include <bitprim/js-api/chain/script.h>
+#include <bitprim/js-api/chain/tools.h>
 
 namespace bitprim_ns {
 
@@ -187,34 +187,6 @@ void bitprim_chain_script_sigops(v8::FunctionCallbackInfo<v8::Value> const& args
     bool embedded = args[1]->BooleanValue();
 
     uint64_t res = chain_script_sigops(script, embedded);
-    args.GetReturnValue().Set(Number::New(isolate, res));
-}
-
-void bitprim_chain_script_embedded_sigops(v8::FunctionCallbackInfo<v8::Value> const& args) {
-    Isolate* isolate = args.GetIsolate();
-    
-    if (args.Length() != 2) {
-        isolate->ThrowException(Exception::TypeError(String::NewFromUtf8(isolate, "Wrong number of arguments")));
-        return;
-    }
-
-    if ( ! args[0]->IsExternal()) {
-        isolate->ThrowException(Exception::TypeError(String::NewFromUtf8(isolate, "Wrong arguments")));
-        return;
-    }
-
-    if ( ! args[1]->IsExternal()) {
-        isolate->ThrowException(Exception::TypeError(String::NewFromUtf8(isolate, "Wrong arguments")));
-        return;
-    }
-
-    void* vptr = v8::External::Cast(*args[0])->Value();
-    script_t script = (script_t)vptr;
-
-    void* vptr2 = v8::External::Cast(*args[1])->Value();
-    script_t prevout_script = (script_t)vptr2;
-
-    uint64_t res = chain_script_embedded_sigops(script, prevout_script);
     args.GetReturnValue().Set(Number::New(isolate, res));
 }
 

@@ -5,7 +5,7 @@
 
 #include <bitprim/nodecint/chain/stealth_compact.h>
 
-#include "stealth_compact.h"
+#include <bitprim/js-api/chain/stealth_compact.h>
 
 namespace bitprim_ns {
 

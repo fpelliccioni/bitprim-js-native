@@ -5,7 +5,7 @@
 
 #include <bitprim/nodecint/chain/payment_address.h>
 
-#include "payment_address.h"
+#include <bitprim/js-api/chain/payment_address.h>
 
 namespace bitprim_ns {
 

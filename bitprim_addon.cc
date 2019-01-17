@@ -6,26 +6,26 @@
 
 #include <inttypes.h>   //TODO: Remove, it is for the printf (printing pointer addresses)
 
-#include "chain/chain.h"
-#include "chain/header.h"
-#include "chain/block.h"
-#include "chain/merkle_block.h"
-#include "chain/transaction.h"
-#include "chain/input.h"
-#include "chain/output.h"
-#include "chain/output_point.h"
-#include "chain/script.h"
-#include "chain/input_list.h"
-#include "chain/output_list.h"
-#include "chain/transaction_list.h"
-#include "chain/block_list.h"
-#include "chain/point.h"
-#include "chain/history_compact_list.h"
-#include "chain/history_compact.h"
-#include "chain/payment_address.h"
-#include "chain/stealth_compact.h"
-#include "chain/stealth_compact_list.h"
-#include "wallet/word_list.h"
+#include <bitprim/js-api/chain/chain.h>
+#include <bitprim/js-api/chain/header.h>
+#include <bitprim/js-api/chain/block.h>
+#include <bitprim/js-api/chain/merkle_block.h>
+#include <bitprim/js-api/chain/transaction.h>
+#include <bitprim/js-api/chain/input.h>
+#include <bitprim/js-api/chain/output.h>
+#include <bitprim/js-api/chain/output_point.h>
+#include <bitprim/js-api/chain/script.h>
+#include <bitprim/js-api/chain/input_list.h>
+#include <bitprim/js-api/chain/output_list.h>
+#include <bitprim/js-api/chain/transaction_list.h>
+#include <bitprim/js-api/chain/block_list.h>
+#include <bitprim/js-api/chain/point.h>
+#include <bitprim/js-api/chain/history_compact_list.h>
+#include <bitprim/js-api/chain/history_compact.h>
+#include <bitprim/js-api/chain/payment_address.h>
+#include <bitprim/js-api/chain/stealth_compact.h>
+#include <bitprim/js-api/chain/stealth_compact_list.h>
+#include <bitprim/js-api/wallet/word_list.h>
 
 namespace bitprim_ns {
 
@@ -254,7 +254,7 @@ void init(Local<Object> exports) {
     NODE_SET_METHOD(exports, "chain_fetch_transaction_position", bitprim_chain_fetch_transaction_position);
     NODE_SET_METHOD(exports, "chain_fetch_spend", bitprim_chain_fetch_spend);
     NODE_SET_METHOD(exports, "chain_fetch_history", bitprim_chain_fetch_history);
-    NODE_SET_METHOD(exports, "chain_fetch_stealth", bitprim_chain_fetch_stealth);
+    // NODE_SET_METHOD(exports, "chain_fetch_stealth", bitprim_chain_fetch_stealth);
     // NODE_SET_METHOD(exports, "chain_fetch_block_locator", bitprim_chain_fetch_block_locator);
     NODE_SET_METHOD(exports, "chain_organize_block", bitprim_chain_organize_block);
     NODE_SET_METHOD(exports, "chain_organize_transaction", bitprim_chain_organize_transaction);
@@ -360,7 +360,6 @@ void init(Local<Object> exports) {
     NODE_SET_METHOD(exports, "chain_script_serialized_size", bitprim_chain_script_serialized_size);
     NODE_SET_METHOD(exports, "chain_script_to_string", bitprim_chain_script_to_string);
     NODE_SET_METHOD(exports, "chain_script_sigops", bitprim_chain_script_sigops);
-    NODE_SET_METHOD(exports, "chain_script_embedded_sigops", bitprim_chain_script_embedded_sigops);
 
     NODE_SET_METHOD(exports, "chain_input_list_push_back", bitprim_chain_input_list_push_back);
     NODE_SET_METHOD(exports, "chain_input_list_count", bitprim_chain_input_list_count);
@@ -396,11 +395,6 @@ void init(Local<Object> exports) {
     NODE_SET_METHOD(exports, "chain_history_compact_get_height", bitprim_chain_history_compact_get_height);
     NODE_SET_METHOD(exports, "chain_history_compact_get_value_or_previous_checksum", bitprim_chain_history_compact_get_value_or_previous_checksum);
 
-    NODE_SET_METHOD(exports, "chain_payment_address_destruct", bitprim_chain_payment_address_destruct);
-    NODE_SET_METHOD(exports, "chain_payment_address_encoded", bitprim_chain_payment_address_encoded);
-    NODE_SET_METHOD(exports, "chain_payment_address_version", bitprim_chain_payment_address_version);
-    NODE_SET_METHOD(exports, "chain_payment_address_construct_from_string", bitprim_chain_payment_address_construct_from_string);
-
     NODE_SET_METHOD(exports, "chain_stealth_compact_get_ephemeral_public_key_hash", bitprim_chain_stealth_compact_get_ephemeral_public_key_hash);
     NODE_SET_METHOD(exports, "chain_stealth_compact_get_transaction_hash", bitprim_chain_stealth_compact_get_transaction_hash);
     NODE_SET_METHOD(exports, "chain_stealth_compact_get_public_key_hash", bitprim_chain_stealth_compact_get_public_key_hash);
@@ -408,6 +402,11 @@ void init(Local<Object> exports) {
     NODE_SET_METHOD(exports, "chain_stealth_compact_list_destruct", bitprim_chain_stealth_compact_list_destruct);
     NODE_SET_METHOD(exports, "chain_stealth_compact_list_count", bitprim_chain_stealth_compact_list_count);
     NODE_SET_METHOD(exports, "chain_stealth_compact_list_nth", bitprim_chain_stealth_compact_list_nth);
+
+    NODE_SET_METHOD(exports, "wallet_payment_address_destruct", bitprim_wallet_payment_address_destruct);
+    NODE_SET_METHOD(exports, "wallet_payment_address_encoded", bitprim_wallet_payment_address_encoded);
+    NODE_SET_METHOD(exports, "wallet_payment_address_version", bitprim_wallet_payment_address_version);
+    NODE_SET_METHOD(exports, "wallet_payment_address_construct_from_string", bitprim_wallet_payment_address_construct_from_string);
 
     NODE_SET_METHOD(exports, "wallet_word_list_construct", bitprim_wallet_word_list_construct);
     NODE_SET_METHOD(exports, "wallet_word_list_destruct", bitprim_wallet_word_list_destruct);

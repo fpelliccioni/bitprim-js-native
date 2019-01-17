@@ -10,8 +10,8 @@
 
 #include <tuple>
 
-#include "chain.h"
-#include "tools.h"
+#include <bitprim/js-api/chain/chain.h>
+#include <bitprim/js-api/chain/tools.h>
 
 namespace bitprim_ns {
 
@@ -33,7 +33,7 @@ using v8::Function;
 // void chain_fetch_last_height(chain_t chain, void* ctx, last_height_fetch_handler_t handler);
 // int chain_get_last_height(chain_t chain, uint64_t /*size_t*/* height);
 
-void chain_fetch_last_height_handler(chain_t chain, void* ctx, int error, uint64_t h) {
+void chain_fetch_last_height_handler(chain_t chain, void* ctx, error_code_t error, uint64_t h) {
     // printf("chain_fetch_last_height_handler - 1\n");
     Isolate* isolate = Isolate::GetCurrent();
 
@@ -142,7 +142,7 @@ void bitprim_chain_fetch_last_height(FunctionCallbackInfo<Value> const& args) {
 // int chain_get_block_height(chain_t chain, hash_t hash, uint64_t /*size_t*/* height);
 // typedef void (*block_height_fetch_handler_t)(chain_t, void*, int, uint64_t /*size_t*/ h);
 
-void chain_fetch_block_height_handler(chain_t chain, void* ctx, int error, uint64_t h) {
+void chain_fetch_block_height_handler(chain_t chain, void* ctx, error_code_t error, uint64_t h) {
 
     // printf("chain_fetch_block_height_handler - 1\n");
     // printf("chain_fetch_block_height_handler - error:   %d\n", error);
@@ -218,7 +218,7 @@ void bitprim_chain_fetch_block_height(FunctionCallbackInfo<Value> const& args) {
 // int chain_get_block_header_by_height(chain_t chain, uint64_t /*size_t*/ height, header_t* out_header, uint64_t /*size_t*/* out_height);
 // typedef void (*block_header_fetch_handler_t)(chain_t, void*, int, header_t header, uint64_t /*size_t*/ h);
 
-void chain_fetch_block_header_by_height_handler(chain_t chain, void* ctx, int error, header_t header, uint64_t h) {
+void chain_fetch_block_header_by_height_handler(chain_t chain, void* ctx, error_code_t error, header_t header, uint64_t h) {
 
     // printf("chain_fetch_block_header_by_height_handler - 1\n");
     // printf("chain_fetch_block_header_by_height_handler - error:   %d\n", error);
@@ -281,7 +281,7 @@ void bitprim_chain_fetch_block_header_by_height(FunctionCallbackInfo<Value> cons
 // void chain_fetch_block_header_by_hash(chain_t chain, void* ctx, hash_t hash, block_header_fetch_handler_t handler);
 // int chain_get_block_header_by_hash(chain_t chain, hash_t hash, header_t* out_header, uint64_t /*size_t*/* out_height);
 
-void chain_fetch_block_header_by_hash_handler(chain_t chain, void* ctx, int error, header_t header, uint64_t h) {
+void chain_fetch_block_header_by_hash_handler(chain_t chain, void* ctx, error_code_t error, header_t header, uint64_t h) {
     Isolate* isolate = Isolate::GetCurrent();
 
     unsigned int const argc = 3;
@@ -346,7 +346,7 @@ void bitprim_chain_fetch_block_header_by_hash(FunctionCallbackInfo<Value> const&
 // typedef void (*block_fetch_handler_t)(chain_t, void*, int, block_t block, uint64_t /*size_t*/ h);
 
 
-void chain_fetch_block_by_height_handler(chain_t chain, void* ctx, int error, block_t block, uint64_t h) {
+void chain_fetch_block_by_height_handler(chain_t chain, void* ctx, error_code_t error, block_t block, uint64_t h) {
     Isolate* isolate = Isolate::GetCurrent();
 
     unsigned int const argc = 3;
@@ -399,7 +399,7 @@ void bitprim_chain_fetch_block_by_height(FunctionCallbackInfo<Value> const& args
 
 // void chain_fetch_block_by_hash(chain_t chain, void* ctx, hash_t hash, block_fetch_handler_t handler);
 // int chain_get_block_by_hash(chain_t chain, hash_t hash, block_t* out_block, uint64_t /*size_t*/* out_height);
-void chain_fetch_block_by_hash_handler(chain_t chain, void* ctx, int error, block_t block, uint64_t h) {
+void chain_fetch_block_by_hash_handler(chain_t chain, void* ctx, error_code_t error, block_t block, uint64_t h) {
     Isolate* isolate = Isolate::GetCurrent();
 
     unsigned int const argc = 3;
@@ -466,7 +466,7 @@ void bitprim_chain_fetch_block_by_hash(FunctionCallbackInfo<Value> const& args) 
 // typedef void (*merkle_block_fetch_handler_t)(chain_t, void*, int, merkle_block_t block, uint64_t /*size_t*/ h);
 
 
-void chain_fetch_merkle_block_by_height_handler(chain_t chain, void* ctx, int error, merkle_block_t merkle_block, uint64_t h) {
+void chain_fetch_merkle_block_by_height_handler(chain_t chain, void* ctx, error_code_t error, merkle_block_t merkle_block, uint64_t h) {
 
     Isolate* isolate = Isolate::GetCurrent();
 
@@ -522,7 +522,7 @@ void bitprim_chain_fetch_merkle_block_by_height(FunctionCallbackInfo<Value> cons
 // void chain_fetch_merkle_block_by_hash(chain_t chain, void* ctx, hash_t hash, merkle_block_fetch_handler_t handler);
 // int chain_get_merkle_block_by_hash(chain_t chain, hash_t hash, merkle_block_t* out_merkle_block, uint64_t /*size_t*/* out_height);
 
-void chain_fetch_merkle_block_by_hash_handler(chain_t chain, void* ctx, int error, merkle_block_t merkle_block, uint64_t h) {
+void chain_fetch_merkle_block_by_hash_handler(chain_t chain, void* ctx, error_code_t error, merkle_block_t merkle_block, uint64_t h) {
     Isolate* isolate = Isolate::GetCurrent();
 
     unsigned int const argc = 3;
@@ -591,7 +591,7 @@ void bitprim_chain_fetch_merkle_block_by_hash(FunctionCallbackInfo<Value> const&
 // typedef void (*compact_block_fetch_handler_t)(chain_t, void*, int, compact_block_t block, uint64_t /*size_t*/ h);
 
 
-void chain_fetch_compact_block_by_height_handler(chain_t chain, void* ctx, int error, compact_block_t compact_block, uint64_t h) {
+void chain_fetch_compact_block_by_height_handler(chain_t chain, void* ctx, error_code_t error, compact_block_t compact_block, uint64_t h) {
     Isolate* isolate = Isolate::GetCurrent();
 
     unsigned int const argc = 3;
@@ -645,7 +645,7 @@ void bitprim_chain_fetch_compact_block_by_height(FunctionCallbackInfo<Value> con
 // void chain_fetch_compact_block_by_hash(chain_t chain, void* ctx, hash_t hash, compact_block_fetch_handler_t handler);
 // int chain_get_compact_block_by_hash(chain_t chain, hash_t hash, compact_block_t* out_compact_block, uint64_t /*size_t*/* out_height);
 
-void chain_fetch_compact_block_by_hash_handler(chain_t chain, void* ctx, int error, compact_block_t compact_block, uint64_t h) {
+void chain_fetch_compact_block_by_hash_handler(chain_t chain, void* ctx, error_code_t error, compact_block_t compact_block, uint64_t h) {
     Isolate* isolate = Isolate::GetCurrent();
 
     unsigned int const argc = 3;
@@ -712,7 +712,7 @@ void bitprim_chain_fetch_compact_block_by_hash(FunctionCallbackInfo<Value> const
 // typedef void (*transaction_fetch_handler_t)(chain_t, void*, int, transaction_t transaction, uint64_t i, uint64_t h);
  
 
-void chain_fetch_transaction_handler(chain_t chain, void* ctx, int error, transaction_t transaction, uint64_t i, uint64_t h) {
+void chain_fetch_transaction_handler(chain_t chain, void* ctx, error_code_t error, transaction_t transaction, uint64_t i, uint64_t h) {
 
     // printf("chain_fetch_transaction_handler - 1\n");
     // printf("chain_fetch_transaction_handler - error:   %d\n", error);
@@ -789,7 +789,7 @@ void bitprim_chain_fetch_transaction(FunctionCallbackInfo<Value> const& args) {
 
 
 
-void chain_fetch_transaction_position_handler(chain_t chain, void* ctx, int error, uint64_t i, uint64_t h) {
+void chain_fetch_transaction_position_handler(chain_t chain, void* ctx, error_code_t error, uint64_t i, uint64_t h) {
 
     // printf("chain_fetch_transaction_position_handler - 1\n");
     // printf("chain_fetch_transaction_position_handler - error:   %d\n", error);
@@ -869,7 +869,7 @@ void bitprim_chain_fetch_transaction_position(FunctionCallbackInfo<Value> const&
 // typedef void (*spend_fetch_handler_t)(chain_t, void*, int, input_point_t input_point);
 
 
-void chain_fetch_spend_handler(chain_t chain, void* ctx, int error, input_point_t input_point) {
+void chain_fetch_spend_handler(chain_t chain, void* ctx, error_code_t error, input_point_t input_point) {
 
     // printf("chain_fetch_spend_handler - 1\n");
     // printf("chain_fetch_spend_handler - error:   %d\n", error);
@@ -932,7 +932,7 @@ void bitprim_chain_fetch_spend(FunctionCallbackInfo<Value> const& args) {
 // int chain_get_history(chain_t chain, payment_address_t address, uint64_t limit, uint64_t from_height, history_compact_list_t* out_history);
 // typedef void (*history_fetch_handler_t)(chain_t, void*, int, history_compact_list_t history);
 
-void chain_fetch_history_handler(chain_t chain, void* ctx, int error, history_compact_list_t history) {
+void chain_fetch_history_handler(chain_t chain, void* ctx, error_code_t error, history_compact_list_t history) {
 
     // printf("chain_fetch_history_handler - 1\n");
     // printf("chain_fetch_history_handler - error:   %d\n", error);
@@ -1002,75 +1002,75 @@ void bitprim_chain_fetch_history(FunctionCallbackInfo<Value> const& args) {
 
     
 
-// // Stealth ---------------------------------------------------------------------
-// BITPRIM_EXPORT
-// void chain_fetch_stealth(chain_t chain, void* ctx, binary_t filter, uint64_t from_height, stealth_fetch_handler_t handler);
-// typedef void (*stealth_fetch_handler_t)(chain_t chain, void*, int, stealth_compact_list_t stealth);
+// // // Stealth ---------------------------------------------------------------------
+// // BITPRIM_EXPORT
+// // void chain_fetch_stealth(chain_t chain, void* ctx, binary_t filter, uint64_t from_height, stealth_fetch_handler_t handler);
+// // typedef void (*stealth_fetch_handler_t)(chain_t chain, void*, int, stealth_compact_list_t stealth);
 
 
-void chain_fetch_stealth_handler(chain_t chain, void* ctx, int error, stealth_compact_list_t stealth) {
+// void chain_fetch_stealth_handler(chain_t chain, void* ctx, error_code_t error, stealth_compact_list_t stealth) {
 
-    // printf("chain_fetch_stealth_handler - 1\n");
-    // printf("chain_fetch_stealth_handler - error:   %d\n", error);
-    // printf("chain_fetch_stealth_handler - stealth:  %p\n", stealth);
+//     // printf("chain_fetch_stealth_handler - 1\n");
+//     // printf("chain_fetch_stealth_handler - error:   %d\n", error);
+//     // printf("chain_fetch_stealth_handler - stealth:  %p\n", stealth);
     
-    Isolate* isolate = Isolate::GetCurrent();
+//     Isolate* isolate = Isolate::GetCurrent();
 
-    unsigned int const argc = 2;
-    Local<Value> argv[argc] = { Number::New(isolate, error), External::New(isolate, stealth)};
+//     unsigned int const argc = 2;
+//     Local<Value> argv[argc] = { Number::New(isolate, error), External::New(isolate, stealth)};
 
-    Persistent<Function>* callback = static_cast<Persistent<Function>*>(ctx);
+//     Persistent<Function>* callback = static_cast<Persistent<Function>*>(ctx);
 
-    Local<Function>::New(isolate, *callback)->Call(isolate->GetCurrentContext()->Global(), argc, argv);
+//     Local<Function>::New(isolate, *callback)->Call(isolate->GetCurrentContext()->Global(), argc, argv);
 
-    callback->Reset();
-    //callback->Dispose();
-    delete callback;
-}
+//     callback->Reset();
+//     //callback->Dispose();
+//     delete callback;
+// }
 
-void bitprim_chain_fetch_stealth(FunctionCallbackInfo<Value> const& args) {
-    Isolate* isolate = args.GetIsolate();
+// void bitprim_chain_fetch_stealth(FunctionCallbackInfo<Value> const& args) {
+//     Isolate* isolate = args.GetIsolate();
 
-    // chain_t chain, binary_t filter, uint64_t from_height, stealth_fetch_handler_t handler
+//     // chain_t chain, binary_t filter, uint64_t from_height, stealth_fetch_handler_t handler
 
-    if (args.Length() != 4) {
-        isolate->ThrowException(Exception::TypeError(String::NewFromUtf8(isolate, "Wrong number of arguments")));
-        return;
-    }
+//     if (args.Length() != 4) {
+//         isolate->ThrowException(Exception::TypeError(String::NewFromUtf8(isolate, "Wrong number of arguments")));
+//         return;
+//     }
 
-    if ( ! args[0]->IsExternal()) {
-        isolate->ThrowException(Exception::TypeError(String::NewFromUtf8(isolate, "Wrong arguments, 0")));
-        return;
-    }
+//     if ( ! args[0]->IsExternal()) {
+//         isolate->ThrowException(Exception::TypeError(String::NewFromUtf8(isolate, "Wrong arguments, 0")));
+//         return;
+//     }
 
-    if ( ! args[1]->IsExternal()) {
-        isolate->ThrowException(Exception::TypeError(String::NewFromUtf8(isolate, "Wrong arguments, 1")));
-        return;
-    }
+//     if ( ! args[1]->IsExternal()) {
+//         isolate->ThrowException(Exception::TypeError(String::NewFromUtf8(isolate, "Wrong arguments, 1")));
+//         return;
+//     }
     
-    if ( ! args[2]->IsNumber()) {
-        isolate->ThrowException(Exception::TypeError(String::NewFromUtf8(isolate, "Wrong arguments, 2")));
-        return;
-    }
+//     if ( ! args[2]->IsNumber()) {
+//         isolate->ThrowException(Exception::TypeError(String::NewFromUtf8(isolate, "Wrong arguments, 2")));
+//         return;
+//     }
 
-    if ( ! args[3]->IsFunction()) {
-        isolate->ThrowException(Exception::TypeError(String::NewFromUtf8(isolate, "Wrong arguments, 2")));
-        return;
-    }    
+//     if ( ! args[3]->IsFunction()) {
+//         isolate->ThrowException(Exception::TypeError(String::NewFromUtf8(isolate, "Wrong arguments, 2")));
+//         return;
+//     }    
 
-    void* vptr = v8::External::Cast(*args[0])->Value();
-    chain_t chain = (chain_t)vptr;
+//     void* vptr = v8::External::Cast(*args[0])->Value();
+//     chain_t chain = (chain_t)vptr;
 
-    void* filter_vptr = v8::External::Cast(*args[1])->Value();
-    binary_t filter = (binary_t)filter_vptr;
+//     void* filter_vptr = v8::External::Cast(*args[1])->Value();
+//     binary_t filter = (binary_t)filter_vptr;
     
-    uint64_t from_height = args[2]->IntegerValue();
+//     uint64_t from_height = args[2]->IntegerValue();
 
-    Persistent<Function>* callback = new Persistent<Function>;
-    callback->Reset(isolate, args[3].As<Function>());
+//     Persistent<Function>* callback = new Persistent<Function>;
+//     callback->Reset(isolate, args[3].As<Function>());
 
-    chain_fetch_stealth(chain, callback, filter, from_height, chain_fetch_stealth_handler);
-}
+//     chain_fetch_stealth(chain, callback, filter, from_height, chain_fetch_stealth_handler);
+// }
 
     
 
@@ -1081,7 +1081,7 @@ void bitprim_chain_fetch_stealth(FunctionCallbackInfo<Value> const& args) {
 // // int chain_get_block_locator(chain_t chain, block_indexes_t heights, get_headers_ptr_t* out_headers);
 // // typedef void (*block_locator_fetch_handler_t)(chain_t, void*, int, get_headers_ptr_t);
 
-// void chain_fetch_block_locator_handler(chain_t chain, void* ctx, int error, get_headers_ptr_t headers) {
+// void chain_fetch_block_locator_handler(chain_t chain, void* ctx, error_code_t error, get_headers_ptr_t headers) {
 
 //     printf("chain_fetch_block_locator_handler - 1\n");
 //     printf("chain_fetch_block_locator_handler - error:   %d\n", error);
@@ -1149,7 +1149,7 @@ void bitprim_chain_fetch_stealth(FunctionCallbackInfo<Value> const& args) {
 // int chain_organize_block_sync(chain_t chain, block_t block);
 // typedef void (*result_handler_t)(chain_t, void*, int);
 
-void chain_organize_block_handler(chain_t chain, void* ctx, int error) {
+void chain_organize_block_handler(chain_t chain, void* ctx, error_code_t error) {
 
     // printf("chain_organize_block_handler - 1\n");
     // printf("chain_organize_block_handler - error:   %d\n", error);
@@ -1211,7 +1211,7 @@ void bitprim_chain_organize_block(FunctionCallbackInfo<Value> const& args) {
 // typedef void (*result_handler_t)(chain_t, void*, int);
 
 
-void chain_organize_transaction_handler(chain_t chain, void* ctx, int error) {
+void chain_organize_transaction_handler(chain_t chain, void* ctx, error_code_t error) {
 
     // printf("chain_organize_transaction_handler - 1\n");
     // printf("chain_organize_transaction_handler - error:   %d\n", error);
@@ -1279,7 +1279,7 @@ void bitprim_chain_organize_transaction(FunctionCallbackInfo<Value> const& args)
 // void chain_subscribe_transaction(chain_t chain, void* ctx, transaction_handler_t handler);
 
 
-// int chain_subscribe_blockchain_handler(executor_t exec, chain_t chain, void* ctx, int error, uint64_t fork_height, block_list_t blocks_incoming, block_list_t blocks_replaced) {
+// int chain_subscribe_blockchain_handler(executor_t exec, chain_t chain, void* ctx, error_code_t error, uint64_t fork_height, block_list_t blocks_incoming, block_list_t blocks_replaced) {
     
 //     //TODO(fernando): hardcoded error code, libbitcoin::error::service_stopped
 //     // if (exec->actual.stopped() || error == 1) {
@@ -1314,7 +1314,7 @@ void bitprim_chain_organize_transaction(FunctionCallbackInfo<Value> const& args)
 // }
 
 
-bool chain_subscribe_blockchain_handler(Persistent<Function>* callback, int error, uint64_t fork_height, block_list_t blocks_incoming, block_list_t blocks_replaced) {
+bool chain_subscribe_blockchain_handler(Persistent<Function>* callback, error_code_t error, uint64_t fork_height, block_list_t blocks_incoming, block_list_t blocks_replaced) {
     Isolate* isolate = Isolate::GetCurrent();
 	v8::HandleScope scope(isolate);
     v8::Locker locker(isolate);
@@ -1338,7 +1338,7 @@ bool chain_subscribe_blockchain_handler(Persistent<Function>* callback, int erro
     return res->BooleanValue(); 
 }
 
-using subs_blk_data_t = std::tuple<Persistent<Function>*, int, uint64_t, block_list_t, block_list_t>;
+using subs_blk_data_t = std::tuple<Persistent<Function>*, error_code_t, uint64_t, block_list_t, block_list_t>;
 
 void chain_subscribe_blockchain_async(uv_async_t* async) {
 
@@ -1353,7 +1353,7 @@ void chain_subscribe_blockchain_async(uv_async_t* async) {
 
 
     Persistent<Function>* callback;
-    int error;
+    error_code_t error;
     uint64_t fork_height;
     block_list_t blocks_incoming;
     block_list_t blocks_replaced;
@@ -1392,7 +1392,7 @@ void clean_stuff(uv_async_t* async) {
     }
 }
 
-int chain_subscribe_blockchain_dispatcher(executor_t exec, chain_t chain, void* ctx, int error, uint64_t fork_height, block_list_t blocks_incoming, block_list_t blocks_replaced) {
+int chain_subscribe_blockchain_dispatcher(executor_t exec, chain_t chain, void* ctx, error_code_t error, uint64_t fork_height, block_list_t blocks_incoming, block_list_t blocks_replaced) {
     uv_async_t* async = static_cast<uv_async_t*>(ctx);
 
     //TODO(fernando): hardcoded error code, libbitcoin::error::service_stopped
@@ -1479,7 +1479,7 @@ void bitprim_chain_subscribe_blockchain(FunctionCallbackInfo<Value> const& args)
     uv_loop_t* loop = uv_default_loop();
     uv_async_init(loop, async, chain_subscribe_blockchain_async);
 
-    auto* context = new subs_blk_data_t(callback, 0, 0, nullptr, nullptr);
+    auto* context = new subs_blk_data_t(callback, error_code_t(0), 0, nullptr, nullptr);
     async->data = context;
 
     // printf("bitprim_chain_subscribe_blockchain - callback: %p\n", callback);
@@ -1509,7 +1509,7 @@ void bitprim_chain_subscribe_blockchain(FunctionCallbackInfo<Value> const& args)
 // // void chain_validate_tx(chain_t exec, transaction_t tx, run_handler_t handler) {
 // // void chain_validate_tx(chain_t chain, void* ctx, transaction_t tx, validate_tx_handler_t handler) {
 
-// void chain_validate_tx_callback(int error, char* message) {
+// void chain_validate_tx_callback(error_code_t error, char* message) {
 //     Isolate* isolate = Isolate::GetCurrent();
 
 //     // printf("chain_validate_tx_callback - 1\n");
