@@ -188,9 +188,9 @@
             '-lboost_thread', 
             '-lboost_timer', 
             '-lsecp256k1', 
-            '-lbz2', 
+            # '-lbz2', 
             '-lgmp', 
-            '-lz',
+            # '-lz',
           ],
         }],
         ['OS=="mac"', {
