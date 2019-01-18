@@ -4,6 +4,7 @@
 #include <node.h>
 #include <nan.h>
 
+
 namespace bitprim_ns {
 
 void bitprim_chain_transaction_destruct(v8::FunctionCallbackInfo<v8::Value> const& args);
