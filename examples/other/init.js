@@ -4,3 +4,4 @@ const bitprim = require('bitprim-native');
 const executor = bitprim.executor_construct("", process.stdout, process.stderr);
 // const executor = bitprim.executor_construct("", null, null)
 bitprim.executor_initchain(executor)
+bitprim.executor_run_wait(executor)

@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 
 echo "Fer 0"
 
@@ -14,9 +15,14 @@ node_setup="http://deb.nodesource.com/setup_$NODEJS_VERSION.x"
 # wget -qO- http://deb.nodesource.com/setup_8.x | sudo -E bash -
 wget -qO- $node_setup | sudo -E bash -
 
+node --version
+npm --version
 echo "Fer 3"
 
 sudo apt-get install -y nodejs
+
+node --version
+npm --version
 
 echo "Fer 4"
 
@@ -31,6 +37,9 @@ echo "Fer 5"
 echo "Fer 6"
 
 sudo -H npm install npm@latest -g
+
+node --version
+npm --version
 
 echo "Fer 7"
 
