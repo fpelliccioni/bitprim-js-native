@@ -19,7 +19,9 @@ class BitprimJs(ConanFile):
 
     # TODO(fernando): Set macros for the several DB modes
     requires = (("bitprim-node-cint/0.18.0@bitprim/stable"))
-    default_options = {"bitprim-node-cint:db": "full"}
+    # default_options = {"bitprim-node-cint:db": "full"}
+    # default_options = "bitprim-node-cint:db=full, bitprim-node-cint:use_domain=True"
+    default_options = "bitprim-node-cint:db=full"
 
     def imports(self):
         self.copy("*.h", "./deps/include/bitprim", "include/bitprim")
