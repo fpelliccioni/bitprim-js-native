@@ -43,7 +43,19 @@ matrix:
    include:
       # - <<: *linux
       #   env: PUSH_TO_REPOS=true
-   
+
+      - <<: *linux
+        env: NODEJS_VERSION=11
+        compiler: gcc
+
+      - <<: *linux
+        env: NODEJS_VERSION=10
+        compiler: gcc
+
+        - <<: *linux
+        env: NODEJS_VERSION=9
+        compiler: gcc
+
       - <<: *linux
         # env: C_COMPILER=gcc-6 CXX_COMPILER=g++-6 NODEJS_VERSION=8
         env: NODEJS_VERSION=8
