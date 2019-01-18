@@ -53,9 +53,34 @@ matrix:
         env: NODEJS_VERSION=10
         compiler: gcc
 
-        - <<: *linux
+      - <<: *linux
         env: NODEJS_VERSION=9
         compiler: gcc
+
+      - <<: *linux
+        env: NODEJS_VERSION=8
+        compiler: gcc
+
+      - <<: *osx
+        osx_image: xcode9.3
+        env: CONAN_APPLE_CLANG_VERSIONS=9.1  TRAVIS_PYTHON_VERSION=2.7 PYTHON_FULL_VERSION=2.7.13
+        node_js: "11"
+
+      - <<: *osx
+        osx_image: xcode9.3
+        env: CONAN_APPLE_CLANG_VERSIONS=9.1  TRAVIS_PYTHON_VERSION=2.7 PYTHON_FULL_VERSION=2.7.13
+        node_js: "10"
+
+      - <<: *osx
+        osx_image: xcode9.3
+        env: CONAN_APPLE_CLANG_VERSIONS=9.1  TRAVIS_PYTHON_VERSION=2.7 PYTHON_FULL_VERSION=2.7.13
+        node_js: "9"
+
+      - <<: *osx
+        osx_image: xcode9.3
+        env: CONAN_APPLE_CLANG_VERSIONS=9.1  TRAVIS_PYTHON_VERSION=2.7 PYTHON_FULL_VERSION=2.7.13
+        node_js: "8"
+
 
       # - <<: *linux
       #   # env: C_COMPILER=gcc-6 CXX_COMPILER=g++-6 NODEJS_VERSION=8
