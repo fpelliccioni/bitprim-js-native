@@ -1,0 +1,14 @@
+{
+  "name": "bitprim-js-native-tester",
+  "version": "1.0.0",
+  "description": "",
+  "main": "init.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bitprim-native": "^0.0.120"
+  }
+}
