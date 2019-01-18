@@ -228,7 +228,7 @@
           "cflags": [
             "-std=c++11",
           ],
-          "include_dirs": ["<!(node -e \"require('nan')\")", "./deps/include", "../deps/include"],
+          "include_dirs": ["<!(node -e \"require('nan')\")", "./include", "./deps/include", "../deps/include"],
           # "include_dirs": ["/home/fernando/dev/bitprim-node-cint/include"],
           
           'libraries': [
@@ -279,7 +279,7 @@
         #   ]
         # }],
         ['OS=="win"', {
-          "include_dirs": ["<!(node -e \"require('nan')\")", "deps/include"],
+          "include_dirs": ["<!(node -e \"require('nan')\")", "./include", "deps/include"],
           'libraries': [
             '../deps/lib/bitprim-node-cint.lib', 
             '../deps/lib/bitprim-node.lib', 
