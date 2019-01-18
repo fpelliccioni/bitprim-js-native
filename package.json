@@ -1,6 +1,6 @@
 {
   "name": "bitprim-native",
-  "version": "0.0.121",
+  "version": "0.0.122",
   "description": "Bitcoin, Bitcoin Cash and Litecoin development platform for Javascript applications",
   "repository": {
     "type": "git",
@@ -18,6 +18,16 @@
   "bugs": {
     "url": "https://github.com/bitprim/bitprim-js-native/issues"
   },
+  "files": [
+    "include/*",
+    "src/*",
+    "binding.gyp",
+    "conanfile.py",
+    "index.js",
+    "install.py",
+    "README.md",
+    "setup.py"
+  ],
   "homepage": "https://github.com/bitprim/bitprim-js-native#readme",
   "engines": {
     "node": ">=4.2.4"
