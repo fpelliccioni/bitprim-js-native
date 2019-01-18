@@ -195,6 +195,7 @@
             # '-L/home/fernando/dev/bitprim-node-cint/build/lib', 
 
             '-lbitprim-node-cint', 
+            '-lbitprim-node-cint-version', 
             '-lbitprim-node', 
             '-lbitprim-blockchain', 
             '-lbitprim-network', 
@@ -239,6 +240,7 @@
             # '-L/home/fernando/dev/bitprim-node-cint/build/lib', 
 
             '-lbitprim-node-cint', 
+            '-lbitprim-node-cint-version', 
             '-lbitprim-node', 
             '-lbitprim-blockchain', 
             '-lbitprim-network', 
@@ -285,6 +287,7 @@
           "include_dirs": ["<!(node -e \"require('nan')\")", "./include", "deps/include"],
           'libraries': [
             '../deps/lib/bitprim-node-cint.lib', 
+            '../deps/lib/bitprim-node-cint-version.lib', 
             '../deps/lib/bitprim-node.lib', 
             '../deps/lib/bitprim-blockchain.lib', 
             '../deps/lib/bitprim-network.lib', 
