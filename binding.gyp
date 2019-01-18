@@ -6,7 +6,8 @@
 
       'product_dir': '<(module_path)',
 
-      "sources": [ "bitprim_addon.cc", 
+      "sources": [ "src/bitprim_addon.cc", 
+                   "src/executor.cc", 
                    "src/chain/chain.cc", 
                    "src/chain/header.cc", 
                    "src/chain/block.cc", 
