@@ -5,6 +5,8 @@ import re
 from sys import platform
 
 from conans.client.conan_api import (Conan, default_manifest_folder)
+from conans.errors import (ConanException)
+
 
 
 def find(name, path):
@@ -51,6 +53,12 @@ def run_conan(reference, reference_fallback):
         print ("Conan Remote exists, ignoring exception")
 
     try:
+        pass
+    except expression as identifier:
+        pass
+
+    try:
+        print('TRY --------------------------')
         # c.install(reference, verify=None, manifests=None)
         c.install(reference, verify=None, manifests_interactive=None, manifests=None)
         print('11 876128376128371263876128376128371263876128376128371263876128376128371263876128376128371263')
@@ -58,7 +66,9 @@ def run_conan(reference, reference_fallback):
         print(pepe)
         print('11 876128376128371263876128376128371263876128376128371263876128376128371263876128376128371263')
 
-    except:
+    except ConanException as e:
+        print(e)
+
         print('EXCEPTION --------------------------')
 
         c.install(reference_fallback, verify=None, manifests_interactive=None, manifests=None)
